@@ -1,0 +1,54 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int[][] notas = new int[3][];
+
+        notas[0] = new int[3]; 
+        notas[1] = new int[2];
+        notas[2] = new int[4];
+
+        notas[0] = new int[] { 70, 85, 90 };
+        notas[1] = new int[] { 60, 45 };
+        notas[2] = new int[] { 80, 95, 100, 88 };
+
+        Console.WriteLine("Notas cadastradas:");
+        for (int i = 0; i < notas.Length; i++)
+        {
+            Console.Write($"Aluno {i}: ");
+            foreach (var n in notas[i])
+                Console.Write(n + " ");
+            Console.WriteLine();
+        }
+
+        Console.Write("\nDigite a nota que deseja buscar: ");
+        int valorBusca = int.Parse(Console.ReadLine());
+
+        bool encontrado = BuscarNota(notas, valorBusca);
+
+        if (encontrado)
+            Console.WriteLine($"A nota {valorBusca} foi encontrada!");
+        else
+            Console.WriteLine($"A nota {valorBusca} NÃO foi encontrada.");
+
+        Console.ReadLine();
+    }
+
+    static bool BuscarNota(int[][] matriz, int valor)
+    {
+        for (int i = 0; i < matriz.Length; i++)
+        {
+            for (int j = 0; j < matriz[i].Length; j++)
+            {
+                if (matriz[i][j] == valor)
+                {
+                    Console.WriteLine($"Encontrada no Aluno {i}, Prova {j}.");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
